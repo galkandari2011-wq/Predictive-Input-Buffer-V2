@@ -715,18 +715,7 @@ $on_mod(Loaded) {
 
     say("v2.0 loaded. F6 cycles: 0.5f -> 1f -> 2f -> 4f -> 6f -> 8f -> custom -> off");
 }
-    buf.console = Mod::get()->getSettingValue<bool>("debug-console");
-    readSettings();
-    applyStage();
-    if (buf.console) {
-        AllocConsole();
-        FILE* out = nullptr;
-        freopen_s(&out, "CONOUT$", "w", stdout);
-        SetConsoleTitleA("Predictive Input Buffer - Live Console");
-    }
-    say("v2.0 loaded. F6 cycles: 0.5f -> 1f -> 2f -> 4f -> 6f -> 8f -> custom -> off");
-}
-
+    
 class $modify(BufPlayLayer, PlayLayer) {
     static void onModify(auto& self) {
         (void)self.setHookPriority("PlayLayer::destroyPlayer", HOOK_PRIORITY);
