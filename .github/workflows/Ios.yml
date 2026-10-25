@@ -1,0 +1,29 @@
+
+name: Build Predictive Buffer for iOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Build Geode mod for iOS
+        id: build
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          target: iOS
+          sdk: given
+
+      - name: Upload iOS build
+        uses: actions/upload-artifact@v7
+        with:
+          name: Predictive-Buffer-iOS
+          path: ${{ steps.build.outputs.build-output }}/*.geode
