@@ -20,7 +20,7 @@ jobs:
         with:
           target: iOS
           sdk: given
-          bindings: vwtfafa/bindings
+          bindings: geode-sdk/bindings
 
       - name: Upload iOS build
         uses: actions/upload-artifact@v7
