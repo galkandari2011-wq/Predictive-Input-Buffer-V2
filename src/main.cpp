@@ -16,7 +16,6 @@
 //    dead flipGravity hook priority, optional console, K panel (stage + live log, hidden by default).
 
 #include <Geode/Geode.hpp>
-#include <Geode/modify/CCKeyboardDispatcher.hpp>
 #include <Geode/modify/EffectGameObject.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/GameObject.hpp>
@@ -887,21 +886,6 @@ class $modify(BufPlayerObject, PlayerObject) {
 
 // F6 via the game's own keyboard events: no polling, and it only fires while GD has
 // focus (v1 polled GetAsyncKeyState every physics tick, even when tabbed out).
-class $modify(BufKeyboard, CCKeyboardDispatcher) {
-    bool dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown, bool isKeyRepeat, double timestamp) {
-        if (isKeyDown && !isKeyRepeat && GameManager::get()->m_playLayer) {
-            if (key == KEY_F6) {
-                cycleStage();
-            }
-            else if (key == KEY_K) {
-                buf.panelOpen = !buf.panelOpen;
-                refreshPanel();
-            }
-        }
-        return CCKeyboardDispatcher::dispatchKeyboardMSG(key, isKeyDown, isKeyRepeat, timestamp);
-    }
-};
-
 class $modify(BufBaseGameLayer, GJBaseGameLayer) {
     static void onModify(auto& self) {
         (void)self.setHookPriority("GJBaseGameLayer::canBeActivatedByPlayer", HOOK_PRIORITY);
