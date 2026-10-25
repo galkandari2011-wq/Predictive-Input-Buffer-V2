@@ -24,7 +24,9 @@
 #include <Geode/modify/LevelEditorLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
+#ifdef _WIN32
 #include <Windows.h>
+#endif
 #include <algorithm>
 #include <chrono>
 #include <cstdint>
@@ -707,6 +709,12 @@ namespace {
 }
 
 $on_mod(Loaded) {
+    buf.console = false;
+    readSettings();
+    applyStage();
+
+    say("v2.0 loaded. F6 cycles: 0.5f -> 1f -> 2f -> 4f -> 6f -> 8f -> custom -> off");
+}
     buf.console = Mod::get()->getSettingValue<bool>("debug-console");
     readSettings();
     applyStage();
