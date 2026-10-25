@@ -1,4 +1,3 @@
-
 name: Build Predictive Buffer for iOS
 
 on:
@@ -20,7 +19,7 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           target: iOS
-       sdk: given
+          sdk: given
           bindings: vwtfafa/bindings
           bindings-ref: fix/2.2081-depends
 
