@@ -21,7 +21,6 @@ jobs:
           target: iOS
           sdk: given
           bindings: vwtfafa/bindings
-          bindings-ref: fix/2.2081-depends
 
       - name: Upload iOS build
         uses: actions/upload-artifact@v7
